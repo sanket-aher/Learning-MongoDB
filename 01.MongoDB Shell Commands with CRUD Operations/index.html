@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB SHELL</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Note : Try all examples on MongoDB Shell</h2><br>
+
+    <h3>MongoDB Shell :</h3>
+    <div>
+        The MongoDB Shell is the quickest way to connect to and work with MongoDB Database. <br><br>
+        
+        <b>Commands :</b><br>
+        <b>1)help :</b>To show all MongoDB Shell Command. <br>
+        <b>2)show dbs :</b>Print a list of all current databases. <br>
+        <b>3)show db :</b>Print a current database that you are working. <br>
+        <b>4)show collections :</b>Print a list of all collection in the current database(like <b>SHOW TABLES</b> in MySQL command). <br>
+        <b>5)cls :</b>Clear the Screen. <br>
+        <b>6)use :</b>Set the current dataabase. <br>
+        <b>7)exit :</b>Quit the MongoDB Shell. <br>
+        <b>8)quit :</b>Quit the MongoDB Shell. <br>
+    </div><br><br>
+
+    <h3>Example 1: On MongoDB Shell</h3>
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> (The test is temporary database created by mongodb and for permanent insert a record into them then test database will be created.) <br>
+        <b>test ></b> help  (to show all mongodb shell commands.) <br>
+        <b>test ></b> show dbs (Print a list of all available dataabase.) <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp; (Default Database) <br>
+        <b>test ></b> 1+2 <br>
+        o/p=> &nbsp;&nbsp;<b>3</b> <br>
+        <b>test ></b> "college".toUpperCase() <br>
+        o/p=> &nbsp;&nbsp;<b>COLLEGE</b> <br>
+        <b>test ></b> use college (Still college is temporary database to make it permanent insert a record into them then college database will be created.)<br>
+        o/p=> &nbsp;&nbsp;<b>switched to db college</b> <br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp; (Still Default Database) <br>
+        <b>college ></b> show db (Show the current database name.) <br>
+        o/p=> &nbsp;&nbsp;<b>college</b> <br>
+        <b>college ></b> quit (Quit the MongoDB Shell.) <br><br>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> show db <br>
+        o/p=> &nbsp;&nbsp;<b>test</b> <br>
+        <b>test ></b> quit <br>
+    </div><br>
+
+    <h3>BSON(Binary Javascript Object Notation) :</h3>
+    <div>
+        &nbsp;&nbsp;BSON is the data format that MongoDB uses to organize and store data. <br>
+        &nbsp;&nbsp;The BSON data format includes all JSON data structure types and adds support for types including dates, different size integers, and binary data.
+    </div><br>
+
+    <h3>JSON vs BSON</h3>
+    <table border="3px" cellspacing="0" >
+        <tr>
+            <th></th>
+            <th>JSON</th>
+            <th>BSON</th>
+        </tr>
+        <tr>
+            <td>1)Data Support</td>
+            <td>String,Boolean,Number,Array,Object,null</td>
+            <td>String,Boolean,Number(Integer,Float,Decimal),Array,Date,null,BinData</td>
+        </tr>        
+        <tr>
+            <td>2)Readability</td>
+            <td>Human and Machine</td>
+            <td>Machine Only</td>
+        </tr>
+    </table> <br>
+
+    <h3>Collection</h3>
+    <div>
+        <b>Document Def(Like a row/record in MySQL) :</b> Mongo stores data in form of document(BSON docs). <br>
+        <b>Collection Def(Like a table in MySQL) :</b> MongoDB stores documents in collection. <br>
+    </div><br>
+
+    <h3>Create a  Collection (like create a table query in MySQL)</h3>
+    <div>
+        Creates a new collection. <br>
+        &nbsp;&nbsp; <b>Syntax : </b>db.createCollection(collectionName) <br><br>
+    </div><br>
+
+    <h3>Example 2 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> show collections (list of all collection(i.e table) in current database(i.e college database))<br>
+        o/p=> <b>(EMPTY)</b><br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> <br>
+        <b>college ></b> db.createCollection('teacher') <br>
+        <b>college ></b> show collections <br>
+        o/p=> <b>teacher</b><br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>college</b> <br>
+        college > <br>
+    </div><br>
+
+    <h3>Insert in Database (like insert query in mysql)</h3>
+    <div>
+        <b>1]insertOne() : </b>Inserts a single document into a collection. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <b>Syntax : </b> db.collectionName.insertOne(document) <br><br>
+        <b>Note : </b>If a collectionName does not exist, MongoDB creates the collection when you first store data for that collectionName. <br>
+    </div><br>
+
+    <h3>Example 3 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> show collections <br>
+        o/p=> <b>(EMPTY)</b><br>
+        <b>college ></b> db.student.insertOne({name:"adam",age:19,marks:88}) <br>
+        o/p=> <b>{ acknowledged : true, insertedId : ObjectId("64..07") }</b><br>
+        <b>college ></b> db.student.insertOne({name:"bob",city:"Delhi",marks:75}) <br>
+        o/p=> <b>{ acknowledged : true, insertedId : ObjectId("64..08") }</b><br>
+        <b>college ></b>db.student.find() (To search all documents, like select * from student in mysql)<br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 }   ]</b><br>
+        <b>college ></b><br>
+    </div><br>
+
+    <div>
+        <b>2]insertMany() : </b>Inserts multiple documents into a collection. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <b>Syntax : </b> db.collectionName.insertMany(array of documents) <br><br>
+        <b>Note : </b>If a collectionName does not exist, MongoDB creates the collection when you first store data for that collectionName. <br>
+    </div><br>
+
+    <h3>Example 4 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> show collections <br>
+        o/p=> <b>(EMPTY)</b><br>
+        <b>college ></b> db.student.insertMany([{name:"catlyn",marks:64,city:'Delhi'},{name:"donald",marks:58,city:'Mumbai'}]) <br>
+        o/p=> <b>{ acknowledged : true, insertedId :{ '0' : ObjectId("64..09"), '1' : ObjectId("64..0a") } }</b><br>
+        <b>college ></b>db.student.find()<br>
+        o/p=> <b>[{ _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>
+        <b>college ></b><br>
+    </div><br>
+
+    <h3>Find in Database (like SELECT query in MySQL)</h3>
+    <div>
+        <b>1)db.collectionName.find() : </b> Returns all documents in the current database. (like select * from tableName in MySQL) <br><br>
+
+        <b>For Specific Queries (like WHERE clause in MySQL)</b><br>
+        <b>2)db.collectionName.findOne({key:value}) : </b> Returns the first document that matched with the specified criteria.<br>
+        <b>3)db.collectionName.find({key:value,key:value,..}) : </b> Returns the cursor(reference) of all documents that matched with the specified criteria.<br>
+    </div><br>
+
+    <h3>Difference between find() and findOne()</h3>
+    <table border="3px" cellspacing="0" >
+        <tr>
+            <th>find()</th>
+            <th>findOne()</th>
+        </tr>
+        <tr>
+            <td>1)It return a cursor document(i.e reference of original document)</td>
+            <td>1)It return an actual/original document.</td>
+        </tr>
+    </table> <br>
+
+    <h3>Example 5 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> db.student.insertMany([{name:'adam',age:19,marks:88},{name:'bob',city:'Delhi',marks:75},{name:"catlyn",marks:64,city:'Delhi'},{name:"donald",marks:58,city:'Mumbai'}]) <br>
+        o/p=> <b>{ acknowledged : true, insertedId :{ '0' : ObjectId("64..07"), '1' : ObjectId("64..08"), '2' : ObjectId("64..09"), '3' : ObjectId("64..0a") } }</b><br>
+        <b>college ></b>db.student.find()<br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>
+        <b>college ></b> db.student.find({city:'Delhi'}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' }]</b><br>
+        <b>college ></b> db.student.findOne({city:'Delhi'}) <br>
+        o/p=> <b>{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 } </b><br>
+        <b>college ></b> db.student.findOne({name:'adam'}) <br>
+        o/p=> <b>{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 } </b><br>
+        <b>college ></b> db.student.find({name:'adam'}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 }] </b><br><br>
+            
+        <b>Q.Find all students whose city='Delhi' and marks=75 </b><br>
+        <b>college ></b> db.student.find({city:'Delhi',marks:75}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 }] </b><br><br>
+        <b>college ></b>
+    </div><br>
+
+    <h3>Query Operators for find in Database :</h3>
+    <div>
+        <b>url search on google: <a href="https://www.mongodb.com/docs/manual/reference/operator/query/" target="_blank">Query Operators</a></b><br><br>
+
+        <b>Comparision Operator :</b><br>
+        <b>1)$eq </b>Matches values that are equal to a specified value. <br>
+        <b>2)$gt </b>Matches values that are greater than a specified value. <br>
+        <b>3)$gte </b>Matches values that are greater than or equal to a specified value. <br>
+        <b>4)$in </b>Matches any of the values specified in an array. <br>
+        <b>5)$lt </b>Matches values that are less than a specified value. <br>
+        <b>6)$lte </b>Matches values that are less than or equal to a specified value. <br>
+        <b>7)$ne </b>Matches all values that are not equal to a specified value. <br>
+        <b>8)$nin </b>Matches none of the values specified in an array. <br><br>
+
+        <b>Logical Operator :</b>
+        <b>1)$and </b>Joins query clauses with a logical AND returns all documents that match the conditions of both clauses. <br>
+        <b>2)$or </b>Joins query clauses with a logical OR returns all documents that match the conditions of either clause. <br>
+        <b>3)$not </b>Inverts the effect of a query expression and returns documents that do not match the query expression. <br>
+        <b>4)$nor </b>Joins query clauses with a logical NOR returns all documents that fail to match both clauses. <br>
+    </div><br>
+
+    <h3>Example 6 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> db.student.insertMany([{name:'adam',age:19,marks:88},{name:'bob',city:'Delhi',marks:75},{name:"catlyn",marks:64,city:'Delhi'},{name:"donald",marks:58,city:'Mumbai'}]) <br>
+        o/p=> <b>{ acknowledged : true, insertedId :{ '0' : ObjectId("64..07"), '1' : ObjectId("64..08"), '2' : ObjectId("64..09"), '3' : ObjectId("64..0a") } }</b><br><br>
+
+        <b>Q1.Find students whose marks>=75 </b><br>
+        <b>college ></b> db.student.find({marks:{$gte:75}}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 }]</b> <br><br>
+
+        <b>Q2.Find students who live in Delhi or Mumbai </b><br>
+        <b>college ></b> db.student.find({city:{$in:['Delhi','Mumbai']}}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br><br>
+
+        <b>Q3.Find students who scored > 75 or live in Delhi </b><br>
+        <b>college ></b> db.student.find({$or:[{marks:{$gt:75}},{city:'Delhi'}]}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:88 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' }]</b><br>
+
+    </div><br>
+
+    <h3>Update in Database (like UPDATE query in MySQL)</h3>
+    <div>
+        <b>Update Operators :</b><br>
+        <b>1)$addFields :</b>Adds new field to documents. <br>
+        <b>2)$set :</b>Adds new field to documents.If new field is present then the $set operator replaces the value of a field with the specified value. <br><br>
+
+        <b>Update Methods :</b><br>
+        <b>1)db.collectionName.updateOne() :</b>Updates at most a single document that match a specified filter even though multiple documents may match the specified filter. <br>
+        <b>2)db.collectionName.updateMany() :</b>Update all documents that match a specified filter. <br>
+        <b>3)db.collectionName.replaceOne() :</b>Replaces at most a single document that match a specified filter even though multiple documents may match the specified filter. <br>
+    </div><br>
+
+    <h3>Example 7 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> db.student.insertMany([{name:'adam',age:19,marks:88},{name:'bob',city:'Delhi',marks:75},{name:"catlyn",marks:64,city:'Delhi'},{name:"donald",marks:58,city:'Mumbai'}]) <br>
+        o/p=> <b>{ acknowledged : true, insertedId :{ '0' : ObjectId("64..07"), '1' : ObjectId("64..08"), '2' : ObjectId("64..09"), '3' : ObjectId("64..0a") } }</b><br><br>
+        <b>college ></b> db.student.updateOne({name:'adam'},{$set:{marks:99}}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:99 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>
+        <b>college ></b> db.student.updateMany({city:'Delhi'},{$set:{city:'New Delhi'}}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:99 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..08"),name:'bob',city:'New Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'New Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>
+        <b>college ></b> db.student.replaceOne({name:'bob'},{name:"John",marks:94,state:"Haryana"}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..07"),name:'adam',age:19,marks:99 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..08"),name:'John',marks:94,state:'Haryana' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'New Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>    
+    
+    </div><br>
+
+    <h3>Create and Access Nesting Object </h3>
+    <h3>Example 8 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b>db.student.insertOne({name:'farah',performance:{marks:88,grade:'A'}}) <br>
+        o/p=> <b>{ _id:ObjectId("64..0b"),name:'farah',performance:{marks:88,grade:'A'} }</b><br>
+        <b>college ></b>db.student.find() <br>
+        o/p=> <b>[{ _id:ObjectId("64..0b"),name:'farah',performance:{marks:88,grade:'A'} }]</b><br>
+        <b>college ></b>db.student.find({'performance.marks':88}) <br>
+        o/p=> <b>[{ _id:ObjectId("64..0b"),name:'farah',performance:{marks:88,grade:'A'} }]</b><br>
+
+    </div><br>
+
+    <h3>DELETE in Database (like DELETE query in MySQL)</h3>
+    <div>
+        <b>Methods :</b><br><br>
+
+        <b>1)deleteOne() :</b><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Delete at most a single document that match a specified filter even though multiple documents may match the specified filter. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>Syntax :</b> db.collectionName.deleteOne(<filter>) <br>
+        <b>2)deleteMany() :</b><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Delete all documents that match a specified filter. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<b>Syntax :</b> db.collectionName.deleteMany(<filter>) <br>
+        <b>3)db.collectionName.deleteMany({}) :</b><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Delete all documents/records in that collection/table. <br>
+        
+    </div><br>
+
+    <h3>Example 9 :On MongoDB Shell</h3> 
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> db.student.insertMany([{name:'adam',age:19,marks:88},{name:'bob',city:'Delhi',marks:75},{name:"catlyn",marks:64,city:'Delhi'},{name:"donald",marks:58,city:'Mumbai'}]) <br>
+        o/p=> <b>{ acknowledged : true, insertedId :{ '0' : ObjectId("64..07"), '1' : ObjectId("64..08"), '2' : ObjectId("64..09"), '3' : ObjectId("64..0a") } }</b><br>
+        <b>college ></b> db.student.deleteOne({age:19}) <br>
+        <b>college ></b>db.student.find()<br>
+        o/p=> <b>[{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..09"),name:'catlyn',marks:64,city:'Delhi' },<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  { _id:ObjectId("64..0a"),name:'donald',marks:58,city:'Mumbai' }   ]</b><br>
+        <b>college ></b> db.student.deleteMany({marks:{$lt:75}}) <br>
+        <b>college ></b>db.student.find()<br>
+        o/p=> <b>[{ _id:ObjectId("64..08"),name:'bob',city:'Delhi',marks:75 }]</b><br><br>
+
+        <b>Q.Delete all documents/records in the student collection/table ?</b><br>
+        <b>college ></b> db.student.deleteMany({}) <br>
+        <b>college ></b>db.student.find()<br>
+        o/p=> <b>(EMPTY)</b><br>
+
+    </div><br>
+
+    <h3>DROP Database (like DROP query in MySQL)</h3>
+    <div>
+        &nbsp;&nbsp;To Drop/Delete the current Database. <br>
+        &nbsp;&nbsp;<b>Syntax :</b> db.dropDatabase() <br>
+    </div><br>
+
+    <h3>Example 10 :On MongoDB Shell</h3>
+    <div>
+        <b>Please enter a MongoDB connection string :</b> mongodb://localhost:27017 <br>
+        <b>test ></b> use college <br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp; (Default Database) <br>
+        <b>college ></b> db.student.insertOne({ name:'farah' }) <br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>college</b> <br>  
+        <b>college ></b> db.dropDatabase() <br>
+        o/p=> <b>{ ok:1, dropped:'college' }</b><br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp; (Default Database) <br>
+        <b>college ></b> db.student.insertOne({ name:'farah' }) <br>
+        <b>college ></b> show dbs <br>
+        o/p=> &nbsp;&nbsp;<b>admin</b> &nbsp;&nbsp;&nbsp; <b>config</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>local</b> &nbsp;&nbsp;&nbsp;&nbsp; <b>college</b> <br>  
+        <b>college ></b>
+
+
+
+    </div><br> 
+
+
+
+
+</body>
+</html>
