@@ -17,7 +17,7 @@ This repository is organized into three main folders:
 
 ### MongoDB Shell Commands
 
-- [Installation and Setup]((https://github.com/sanket-aher/Learning-MongoDB/blob/main/MongoDB%20Installation.pdf))
+- [Installation and Setup](https://github.com/sanket-aher/Learning-MongoDB/blob/main/MongoDB%20Installation.pdf)
 - Basic CRUD Operations
 - Advanced Shell Commands
 
