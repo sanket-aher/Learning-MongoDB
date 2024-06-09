@@ -80,3 +80,5 @@ db.collection_name.find({ key: { $gt: value } })
 In this folder, you will find:
 
 [index.html](https://github.com/sanket-aher/Learning-MongoDB/blob/main/01.MongoDB%20Shell%20Commands%20with%20CRUD%20Operations/index.html): A file containing all the information about MongoDB Shell Commands. You can download it and run it in your browser by double-clicking on the file to view the content.
+
+**Happy learning!**
